@@ -15,4 +15,12 @@ public class ProxyTest {
         StaticProxy proxy = new StaticProxy(target);
         proxy.doInvoke();
     }
+
+    @Test
+    public void dynamicProxyTest(){
+        TargetService target = new TargetServiceImpl();
+        DynamicProxy proxy = new DynamicProxy(target);
+        TargetService proxyObj = (TargetService)proxy.getInstance();
+        proxyObj.doInvoke();
+    }
 }
