@@ -23,4 +23,12 @@ public class ProxyTest {
         TargetService proxyObj = (TargetService)proxy.getInstance();
         proxyObj.doInvoke();
     }
+
+    @Test
+    public void cglibProxyTest(){
+        TargetServiceImpl target = new TargetServiceImpl();
+        CglibProxy proxy = new CglibProxy(target);
+        TargetService proxyObj = (TargetService)proxy.getInstance();
+        proxyObj.doInvoke();
+    }
 }
