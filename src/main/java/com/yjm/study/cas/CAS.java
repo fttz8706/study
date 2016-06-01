@@ -2,7 +2,6 @@ package com.yjm.study.cas;
 
 import org.junit.Test;
 
-import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicStampedReference;
 
