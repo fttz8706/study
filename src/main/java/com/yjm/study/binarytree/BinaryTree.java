@@ -17,7 +17,7 @@ public class BinaryTree {
      * 递归法获取二叉树的镜像
      * @param node
      */
-    public static void getMirror(Node node){
+    public void getMirror(Node node){
         if(node != null && (node.getLeft() != null || node.getRight() != null)){
             Node left = node.getLeft();
             node.setLeft(node.getRight());
@@ -27,14 +27,53 @@ public class BinaryTree {
         }
     }
 
+    /**
+     * 前序遍历
+     * @param node
+     */
+    public void beforeTraverse(Node node){
+       if(node != null){
+           System.out.print(node.getData() + ", ");
+           beforeTraverse(node.getLeft());
+           beforeTraverse(node.getRight());
+       }
+    }
+
+    /**
+     * 中序遍历
+     * @param node
+     */
+    public void middleTraverse(Node node){
+        if(node != null){
+            middleTraverse(node.getLeft());
+            System.out.print(node.getData() + ", ");
+            middleTraverse(node.getRight());
+        }
+    }
+
+    /**
+     * 后序遍历
+     * @param node
+     */
+    public void afterTraverse(Node node){
+        if(node != null){
+            afterTraverse(node.getLeft());
+            afterTraverse(node.getRight());
+            System.out.print(node.getData() + ", ");
+        }
+    }
+
     public static void main(String[] args){
         BinaryTree btree = new BinaryTree();
-        buildBinary(btree.getRoot());
-        getMirror(btree.getRoot());
+        btree.buildBinaryTree(btree.getRoot());
+        // btree.getMirror(btree.getRoot());
+        /*btree.beforeTraverse(btree.getRoot());
+        btree.middleTraverse(btree.getRoot());
+        btree.afterTraverse(btree.getRoot());*/
         System.out.println("finished...");
     }
 
-    private static void buildBinary(Node root){
+    private void buildBinaryTree(Node root){
         Node n_1_1 = new Node(1, null, null);
         Node n_1_2 = new Node(2, null, null);
         Node n_2_1 = new Node(3, null, null);
@@ -51,7 +90,7 @@ public class BinaryTree {
         this.root = root;
     }
 
-    static class Node{
+    public static class Node{
         private int data;
         private Node left;
         private Node right;
