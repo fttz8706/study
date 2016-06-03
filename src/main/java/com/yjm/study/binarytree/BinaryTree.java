@@ -1,5 +1,8 @@
 package com.yjm.study.binarytree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 二叉树相关算法
  *
@@ -63,6 +66,62 @@ public class BinaryTree {
         }
     }
 
+    /**
+     * 按层遍历
+     * @param root
+     */
+    public void layerTraverse(Node root){
+        List<Node> nodeList = new ArrayList<Node>();
+        nodeList.add(root);
+        int index = 0;
+        while(nodeList.size() > index){
+            Node node = nodeList.get(index);
+            if(node != null && node.getLeft() != null){
+                nodeList.add(node.getLeft());
+            }
+            if(node != null && node.getRight() != null){
+                nodeList.add(node.getRight());
+            }
+            index++;
+        }
+        for(Node item : nodeList){
+            System.out.print(item.getData() + ", ");
+        }
+    }
+
+    int count = 0;
+
+    /**
+     * 获取节点个数
+     * @param node
+     */
+    public void getNodeCount(Node node){
+        if(node != null){
+            count++;
+            getNodeCount(node.getLeft());
+            getNodeCount(node.getRight());
+        }
+    }
+
+    // 层高
+    int layerHigh = 0;
+    int index = 0;
+
+    /**
+     * 获取二叉树的深度
+     * @param node
+     */
+    public void getDeep(Node node){
+        if(node != null){
+            index++;
+            getDeep(node.getLeft());
+            getDeep(node.getRight());
+            layerHigh = layerHigh>index ? layerHigh : index;
+            index--;
+        }
+    }
+
+
     public static void main(String[] args){
         BinaryTree btree = new BinaryTree();
         btree.buildBinaryTree(btree.getRoot());
@@ -70,6 +129,11 @@ public class BinaryTree {
         /*btree.beforeTraverse(btree.getRoot());
         btree.middleTraverse(btree.getRoot());
         btree.afterTraverse(btree.getRoot());*/
+        //btree.layerTraverse(btree.getRoot());
+        btree.getNodeCount(btree.getRoot());
+        System.out.println("count=" + btree.count);
+        btree.getDeep(btree.getRoot());
+        System.out.println("layer high=" + btree.layerHigh);
         System.out.println("finished...");
     }
 
