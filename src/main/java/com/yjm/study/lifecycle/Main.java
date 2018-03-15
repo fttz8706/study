@@ -11,11 +11,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-        DemoService demoService = new DemoService();
+        final DemoService demoService = new DemoService();
 
         demoService.init();
 
-        System.out.println("main do something...");
+        demoService.doBiz();
 
         Runtime.getRuntime().addShutdownHook( new Thread(
                 new Runnable() {

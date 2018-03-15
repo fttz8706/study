@@ -19,7 +19,7 @@ public class DemoService extends AbstractLifecycle {
                 50,
                 100,
                 TimeUnit.MILLISECONDS,
-                new LinkedBlockingDeque<>()
+                new LinkedBlockingQueue<Runnable>(500)
         );
         System.out.println("resources inited...");
     }
